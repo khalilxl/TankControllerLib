@@ -15,11 +15,14 @@ unittest(SerialTest) {
   assertEqual("", state->serialPort[0].dataIn);
   assertEqual("b", state->serialPort[0].dataOut);
 
-  // Having trouble printing because it is a println command
-  // String test = "test";
-  // mySerial.print(test);
-  // assertEqual("", state->serialPort[0].dataIn);
-  // assertEqual("btest\n", state->serialPort[0].dataOut);
+  String test = "test:";
+  mySerial.print(test);
+  assertEqual("", state->serialPort[0].dataIn);
+  assertEqual("btest:\r\n", state->serialPort[0].dataOut);
+
+  mySerial.print(test, 3);
+  assertEqual("", state->serialPort[0].dataIn);
+  assertEqual("btest:\r\ntest:3\r\n", state->serialPort[0].dataOut);
 }
 
 unittest_main()
