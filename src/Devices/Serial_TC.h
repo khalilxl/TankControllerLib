@@ -1,16 +1,16 @@
-// Year-Month-Day Format for DateTime
-// https://en.wikipedia.org/wiki/ISO_8601
+// This class is for the Serial Commands used in Tank Controller.
+// Serial here mostly deals with writing or printing data over through the serial port.
+// Serial.print and Serial.write can be called in different ways to print data.
+// Also print_PID, print_DataTime, print_mac are used to print the PID information, current date information, and the
+// mac address.
 
 #include <Arduino.h>
 #include <RTClib.h>
 
-class TC_Serial {
+class Serial_TC {
 private:
-  const float RREF = 430.0;
-  // RTC_PCF8523 rtc;
-
 public:
-  TC_Serial() {
+  Serial_TC() {
     Serial.begin(9600);
   }
 
@@ -25,24 +25,24 @@ public:
     Serial.println(output / 1000, 1);
   }
 
-  void print_DateTime(DateTime now) {
-    Serial.print(now.year(), DEC);
+  void print_DateTime(DateTime dateTime) {
+    Serial.print(dateTime.year(), DEC);
     Serial.print('-');
-    Serial.print(now.month(), DEC);
+    Serial.print(dateTime.month(), DEC);
     Serial.print('-');
-    Serial.print(now.day(), DEC);
+    Serial.print(dateTime.day(), DEC);
     Serial.print(' ');
-    Serial.print(now.hour(), DEC);
+    Serial.print(dateTime.hour(), DEC);
     Serial.print(':');
-    if (now.minute() < 10) {
+    if (dateTime.minute() < 10) {
       Serial.print('0');
     }
-    Serial.print(now.minute(), DEC);
+    Serial.print(dateTime.minute(), DEC);
     Serial.print(':');
-    if (now.second() < 10) {
+    if (dateTime.second() < 10) {
       Serial.print('0');
     }
-    Serial.print(now.second(), DEC);
+    Serial.print(dateTime.second(), DEC);
     Serial.println();
   }
 
