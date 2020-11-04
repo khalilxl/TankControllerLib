@@ -25,24 +25,24 @@ public:
     Serial.println(output / 1000, 1);
   }
 
+  void print_two_digits(int value) {
+    if (value < 10) {
+      Serial.print('0');
+    }
+    Serial.print(value, DEC);
+  }
   void print_DateTime(DateTime dateTime) {
     Serial.print(dateTime.year(), DEC);
     Serial.print('-');
-    Serial.print(dateTime.month(), DEC);
+    print_two_digits(dateTime.month());
     Serial.print('-');
-    Serial.print(dateTime.day(), DEC);
+    print_two_digits(dateTime.day());
     Serial.print(' ');
-    Serial.print(dateTime.hour(), DEC);
+    print_two_digits(dateTime.hour());
     Serial.print(':');
-    if (dateTime.minute() < 10) {
-      Serial.print('0');
-    }
-    Serial.print(dateTime.minute(), DEC);
+    print_two_digits(dateTime.minute());
     Serial.print(':');
-    if (dateTime.second() < 10) {
-      Serial.print('0');
-    }
-    Serial.print(dateTime.second(), DEC);
+    print_two_digits(dateTime.second());
     Serial.println();
   }
 
